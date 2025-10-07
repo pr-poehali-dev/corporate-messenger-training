@@ -40,6 +40,26 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 full_name = body_data.get('full_name')
                 role = body_data.get('role', 'student')
                 
+                cursor.execute(
+                    "SELECT id FROM users WHERE email = %s",
+                    (email,)
+                )
+                existing_user = cursor.fetchone()
+                
+                if existing_user:
+                    return {
+                        'statusCode': 400,
+                        'headers': {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        'isBase64Encoded': False,
+                        'body': json.dumps({
+                            'success': False,
+                            'error': 'Email already registered'
+                        })
+                    }
+                
                 password_hash = hashlib.sha256(password.encode()).hexdigest()
                 
                 cursor.execute(

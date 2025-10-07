@@ -60,6 +60,13 @@ export default function AuthForm({ onAuthSuccess }: AuthFormProps) {
       if (data.success) {
         onAuthSuccess(data.user);
         toast({ title: 'Регистрация успешна!' });
+      } else {
+        toast({ 
+          title: data.error === 'Email already registered' 
+            ? 'Email уже зарегистрирован' 
+            : 'Ошибка регистрации', 
+          variant: 'destructive' 
+        });
       }
     } catch (error) {
       toast({ title: 'Ошибка регистрации', variant: 'destructive' });

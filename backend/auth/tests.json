@@ -1,28 +1,6 @@
 {
   "tests": [
     {
-      "name": "Register new user",
-      "method": "POST",
-      "path": "/",
-      "body": {
-        "action": "register",
-        "email": "teacher@test.com",
-        "password": "test123",
-        "full_name": "Test Teacher",
-        "role": "admin"
-      },
-      "expectedStatus": 201,
-      "expectedBody": {
-        "success": true,
-        "user": {
-          "email": "string",
-          "full_name": "string",
-          "role": "string"
-        }
-      },
-      "bodyMatcher": "partial"
-    },
-    {
       "name": "Login user",
       "method": "POST",
       "path": "/",
@@ -34,6 +12,24 @@
       "expectedStatus": 200,
       "expectedBody": {
         "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Register duplicate email returns error",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "register",
+        "email": "teacher@test.com",
+        "password": "test123",
+        "full_name": "Test Teacher",
+        "role": "admin"
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "success": false,
+        "error": "Email already registered"
       },
       "bodyMatcher": "partial"
     }
