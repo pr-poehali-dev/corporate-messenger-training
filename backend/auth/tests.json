@@ -1,0 +1,41 @@
+{
+  "tests": [
+    {
+      "name": "Register new user",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "register",
+        "email": "teacher@test.com",
+        "password": "test123",
+        "full_name": "Test Teacher",
+        "role": "admin"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true,
+        "user": {
+          "email": "string",
+          "full_name": "string",
+          "role": "string"
+        }
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Login user",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "login",
+        "email": "teacher@test.com",
+        "password": "test123"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

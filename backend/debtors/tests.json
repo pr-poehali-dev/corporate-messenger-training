@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Get all debtors",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "debtors": []
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Add debtor",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "group_id": 1,
+        "user_id": 1,
+        "description": "Не сдал домашнее задание",
+        "amount": 1
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

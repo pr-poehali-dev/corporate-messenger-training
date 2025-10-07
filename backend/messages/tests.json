@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "Get messages by group",
+      "method": "GET",
+      "path": "/?group_id=1",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "messages": []
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Send message",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "group_id": 1,
+        "user_id": 1,
+        "content": "Hello class!"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "tests": [
+    {
+      "name": "Get all groups",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "groups": []
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Create new group",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Python Programming",
+        "description": "Learn Python basics",
+        "admin_id": 1,
+        "deadline": "2025-12-31T23:59:59"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true,
+        "group": {
+          "name": "string"
+        }
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
